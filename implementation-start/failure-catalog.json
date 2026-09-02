@@ -1,0 +1,19 @@
+{
+  "project": "Privattice",
+  "failures": [
+    "projection corruption",
+    "AGE unavailable",
+    "cyclic graph",
+    "high-degree node",
+    "path explosion",
+    "source conflict",
+    "rebuild interruption",
+    "duplicate import"
+  ],
+  "required_result": [
+    "invariants preserved",
+    "observable failure",
+    "bounded retries",
+    "recovery/reconciliation succeeds"
+  ]
+}
