@@ -1,0 +1,15 @@
+{
+  "project": "Privattice",
+  "envelope": "CloudEvents-compatible 1.0 profile",
+  "delivery": "at-least-once",
+  "ordering": "not globally guaranteed; per-aggregate sequencing when documented",
+  "deduplication": "required by event id",
+  "types": [
+    "inventory.import_committed.v1",
+    "relationship.upserted.v1",
+    "projection.checkpoint_advanced.v1",
+    "projection.rebuild_completed.v1",
+    "path.query_completed.v1",
+    "path.budget_exceeded.v1"
+  ]
+}

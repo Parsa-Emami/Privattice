@@ -1,0 +1,152 @@
+asyncapi: 3.1.0
+id: urn:parsa-security:privattice:events:v1
+info:
+  title: Privattice Events
+  version: 1.0.0
+  description: Canonical application event contract. Delivery is at-least-once; consumers must be idempotent and deduplicate by event id.
+defaultContentType: application/json
+channels:
+  event_inventory_import_committed_v1:
+    address: inventory.import_committed.v1
+    messages:
+      InventoryImportCommittedV1Message:
+        $ref: '#/components/messages/InventoryImportCommittedV1Message'
+  event_relationship_upserted_v1:
+    address: relationship.upserted.v1
+    messages:
+      RelationshipUpsertedV1Message:
+        $ref: '#/components/messages/RelationshipUpsertedV1Message'
+  event_projection_checkpoint_advanced_v1:
+    address: projection.checkpoint_advanced.v1
+    messages:
+      ProjectionCheckpointAdvancedV1Message:
+        $ref: '#/components/messages/ProjectionCheckpointAdvancedV1Message'
+  event_projection_rebuild_completed_v1:
+    address: projection.rebuild_completed.v1
+    messages:
+      ProjectionRebuildCompletedV1Message:
+        $ref: '#/components/messages/ProjectionRebuildCompletedV1Message'
+  event_path_query_completed_v1:
+    address: path.query_completed.v1
+    messages:
+      PathQueryCompletedV1Message:
+        $ref: '#/components/messages/PathQueryCompletedV1Message'
+  event_path_budget_exceeded_v1:
+    address: path.budget_exceeded.v1
+    messages:
+      PathBudgetExceededV1Message:
+        $ref: '#/components/messages/PathBudgetExceededV1Message'
+operations:
+  send_inventory_import_committed_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_inventory_import_committed_v1'
+    messages:
+    - $ref: '#/channels/event_inventory_import_committed_v1/messages/InventoryImportCommittedV1Message'
+  send_relationship_upserted_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_relationship_upserted_v1'
+    messages:
+    - $ref: '#/channels/event_relationship_upserted_v1/messages/RelationshipUpsertedV1Message'
+  send_projection_checkpoint_advanced_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_projection_checkpoint_advanced_v1'
+    messages:
+    - $ref: '#/channels/event_projection_checkpoint_advanced_v1/messages/ProjectionCheckpointAdvancedV1Message'
+  send_projection_rebuild_completed_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_projection_rebuild_completed_v1'
+    messages:
+    - $ref: '#/channels/event_projection_rebuild_completed_v1/messages/ProjectionRebuildCompletedV1Message'
+  send_path_query_completed_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_path_query_completed_v1'
+    messages:
+    - $ref: '#/channels/event_path_query_completed_v1/messages/PathQueryCompletedV1Message'
+  send_path_budget_exceeded_v1:
+    action: send
+    channel:
+      $ref: '#/channels/event_path_budget_exceeded_v1'
+    messages:
+    - $ref: '#/channels/event_path_budget_exceeded_v1/messages/PathBudgetExceededV1Message'
+components:
+  messages:
+    InventoryImportCommittedV1Message:
+      name: inventory.import_committed.v1
+      title: inventory.import_committed.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    RelationshipUpsertedV1Message:
+      name: relationship.upserted.v1
+      title: relationship.upserted.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    ProjectionCheckpointAdvancedV1Message:
+      name: projection.checkpoint_advanced.v1
+      title: projection.checkpoint_advanced.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    ProjectionRebuildCompletedV1Message:
+      name: projection.rebuild_completed.v1
+      title: projection.rebuild_completed.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    PathQueryCompletedV1Message:
+      name: path.query_completed.v1
+      title: path.query_completed.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+    PathBudgetExceededV1Message:
+      name: path.budget_exceeded.v1
+      title: path.budget_exceeded.v1
+      payload:
+        $ref: '#/components/schemas/EventEnvelope'
+  schemas:
+    EventEnvelope:
+      type: object
+      additionalProperties: false
+      required:
+      - specversion
+      - id
+      - source
+      - type
+      - time
+      - subject
+      - data
+      properties:
+        specversion:
+          type: string
+          const: '1.0'
+        id:
+          type: string
+          minLength: 16
+        source:
+          type: string
+          minLength: 1
+        type:
+          type: string
+          enum:
+          - inventory.import_committed.v1
+          - relationship.upserted.v1
+          - projection.checkpoint_advanced.v1
+          - projection.rebuild_completed.v1
+          - path.query_completed.v1
+          - path.budget_exceeded.v1
+        time:
+          type: string
+          format: date-time
+        subject:
+          type: string
+        traceparent:
+          type:
+          - string
+          - 'null'
+        datacontenttype:
+          type: string
+          const: application/json
+        data:
+          type: object

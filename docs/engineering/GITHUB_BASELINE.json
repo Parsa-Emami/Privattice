@@ -1,0 +1,13 @@
+{
+  "repository": "Parsa-Emami/Privattice",
+  "reviewed_commit": "5b50431533e05b72bc79216c322cfb9d91457a19",
+  "existing_file_count": 78,
+  "existing_runtime": "architecture scaffold only",
+  "protected_files_sha256": {
+    ".env.example": "bfb911154ddcbff8c2f339f7dce15917d0702fb87c8631b614d4e48fd486f498"
+  },
+  "skipped_input_archival_config_paths": [
+    "legacy/v7/.env.example"
+  ],
+  "preservation": "All existing protected files remain at their original paths with identical bytes. Supplied archival env duplicates were omitted to avoid creating extra config files."
+}

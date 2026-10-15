@@ -1,0 +1,100 @@
+{
+  "folder": "03-privattice",
+  "name": "Privattice",
+  "rank": 5,
+  "score": 7.0,
+  "verdict": "ارزش دارد اگر تحلیل snapshot و توضیح remediation باشد؛ رقابت صرف با BloodHound کافی نیست.",
+  "user": "مسئول امنیت تیم کوچک و مشاور IAM",
+  "pain": "دسترسی غیرمستقیم از روی چند فایل inventory دیده نمی‌شود",
+  "value": "نمایش مسیر دسترسی با منبع هر edge و شبیه‌سازی اصلاح",
+  "wedge": "snapshot analyzer قابل‌حمل و کم‌نصب برای دامنهٔ مشخص؛ provider زنده بعداً",
+  "alternatives": "BloodHound CE/OpenGraph",
+  "source_ids": [
+    "bloodhound"
+  ],
+  "mvp": [
+    "واردسازی JSON/CSV inventory مجاز",
+    "گراف در حافظه از snapshot نسخه‌دار",
+    "query محدود و توضیح مسیر",
+    "what-if حذف edge و گزارش تغییر"
+  ],
+  "later": [
+    "اتصال زنده AD/cloud",
+    "Apache AGE یا Neo4j",
+    "continuous attack-path management",
+    "SaaS مشترک چند سازمان"
+  ],
+  "stack": [
+    "Go embedded service/CLI",
+    "SQLite inventory",
+    "In-memory bounded graph",
+    "React UI"
+  ],
+  "mode": "private-web",
+  "stores": {
+    "SQLite": "authoritative normalized entities, relationships, versions, provenance",
+    "Memory graph": "rebuildable adjacency projection per snapshot",
+    "Filesystem": "source snapshots and exported reports"
+  },
+  "removed": [
+    "Laravel",
+    "PostgreSQL",
+    "Apache AGE",
+    "Valkey"
+  ],
+  "limits": {
+    "vertices": 10000,
+    "edges": 50000,
+    "query_max_depth": 6,
+    "query_max_paths": 100,
+    "expanded_vertices": 10000,
+    "deadline_seconds": 2
+  },
+  "hardware": "هدف private deployment: 2 vCPU / 2 GiB RAM / 10 GiB SSD؛ graph budget باید آزمون شود.",
+  "weeks": "6–10 هفته",
+  "risks": [
+    "snapshot قدیمی یا ناقص ممکن است خطر را پنهان کند",
+    "مسیر inferred را نباید دسترسی مشاهده‌شده نامید",
+    "generic multi-source graph دیگر تمایز کافی نیست"
+  ],
+  "uat": [
+    "snapshot مجاز را وارد کن و هر مسیر را تا source/confidence دنبال کن",
+    "گراف را حذف و از inventory بازسازی کن؛ edge-set hash برابر باشد",
+    "graph cyclic و پرشاخه باید truncated/deadline بدهد، نه timeout نامحدود"
+  ],
+  "domain": {
+    "primary": "inventory-snapshot",
+    "fields": {
+      "snapshot_id": "id",
+      "source": "text",
+      "observed_at": "timestamp",
+      "entities": "array",
+      "relationships": "array"
+    },
+    "invariants": [
+      "No authority only in graph",
+      "Bounded traversal and explicit truncation",
+      "Every edge has provenance and confidence"
+    ]
+  },
+  "version": "0.0.0",
+  "status": "WEB_FOUNDATION",
+  "source_implemented": true,
+  "market_validation": "UNVALIDATED",
+  "assumption": "Browser application first; optional CLI/worker remains an engine adapter. Web foundation does not satisfy domain release gates.",
+  "engine_implemented": false,
+  "previous_engine_mode": "embedded-private",
+  "web_application": {
+    "status": "foundation_implemented",
+    "deployment_profile": "private-web",
+    "frontend": "React + TypeScript + Vite",
+    "web_runtime": "Node.js static shell; no engine proxy",
+    "default_engine_enabled": false,
+    "preview_storage": "tab memory only",
+    "offline_supported": false,
+    "engine_status": "planned",
+    "source": "apps/web/src/main.tsx",
+    "existing_backend": null
+  },
+  "web_version": "0.0.1"
+}

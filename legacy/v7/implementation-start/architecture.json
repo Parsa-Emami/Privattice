@@ -1,0 +1,28 @@
+{
+  "project": "Privattice",
+  "version": "v1-reference",
+  "risk": "HIGH",
+  "runtime": [
+    "Laravel 13",
+    "Go graph builder/analyzer",
+    "PostgreSQL 18",
+    "Apache AGE PG18",
+    "Valkey",
+    "OpenTelemetry"
+  ],
+  "final_decisions": [
+    "PostgreSQL relational inventory is authoritative. Apache AGE v1.7/PG18 is the reference graph projection backend for v1.",
+    "GraphBackend is a port; optional Neo4j Community adapter may exist later without changing domain semantics or licensing the core under GPL.",
+    "Projection rows carry source entity version/checkpoint. A full graph rebuild must reproduce the same semantic edge-set hash.",
+    "Traversal is always bounded by max depth, max paths, max expanded vertices, wall-clock deadline and cancellation token.",
+    "Path ranking is deterministic: edge exposure weight + privilege gain + evidence confidence + target criticality; scoring formula is versioned.",
+    "Every relationship edge has provenance/source/confidence/observed_at. Conflicts are preserved and resolved by explicit precedence policy, never overwritten silently.",
+    "No write is accepted only into the graph projection. All imports land in authoritative inventory first."
+  ],
+  "data_ownership": {
+    "PostgreSQL": "authoritative identities/assets/relationships/provenance",
+    "Apache AGE": "derived graph projection",
+    "Valkey": "jobs/cache only",
+    "ObjectStore": "raw import snapshots"
+  }
+}
