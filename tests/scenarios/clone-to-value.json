@@ -1,0 +1,35 @@
+{
+  "project": "Privattice",
+  "status": "planned acceptance contract; not executed domain proof",
+  "input": "repository-authored synthetic licensed fixtures",
+  "steps": [
+    "Import synthetic access snapshot",
+    "bounded path query",
+    "inspect provenance",
+    "simulate removing edge",
+    "rebuild graph",
+    "verify identical source hash."
+  ],
+  "expected_invariants": [
+    "No authority only in graph",
+    "Bounded traversal and explicit truncation",
+    "Every edge has provenance and confidence"
+  ],
+  "negative_uat": [
+    "snapshot مجاز را وارد کن و هر مسیر را تا source/confidence دنبال کن",
+    "گراف را حذف و از inventory بازسازی کن؛ edge-set hash برابر باشد",
+    "graph cyclic و پرشاخه باید truncated/deadline بدهد، نه timeout نامحدود"
+  ],
+  "clean_host_commands": [
+    "git clone https://github.com/Parsa-Emami/Privattice.git",
+    "cd Privattice",
+    "npm run setup",
+    "npm start"
+  ],
+  "requires_at_C30": [
+    "real engine and required local providers",
+    "the entire workflow",
+    "restart and restore",
+    "no paid/cloud account or sibling clone"
+  ]
+}

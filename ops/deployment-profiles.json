@@ -1,0 +1,43 @@
+{
+  "version": "0",
+  "project": "Privattice",
+  "status": "web_foundation",
+  "primary_mode": "private-web",
+  "domain_profile": {
+    "public_demo": "synthetic-only",
+    "admit_untrusted_runtime_jobs": false,
+    "enable_sensitive_data_upload_by_default": false,
+    "https_required": true
+  },
+  "private_profile": {
+    "single_owner": true,
+    "persistent_local_volume": true,
+    "use_external_database_service": false,
+    "providers": [
+      "Go embedded service/CLI",
+      "SQLite inventory",
+      "In-memory bounded graph",
+      "React UI"
+    ]
+  },
+  "capacity_targets": {
+    "vertices": 10000,
+    "edges": 50000,
+    "query_max_depth": 6,
+    "query_max_paths": 100,
+    "expanded_vertices": 10000,
+    "deadline_seconds": 2
+  },
+  "measured": false,
+  "engine_mode": "embedded-private",
+  "web": {
+    "artifact": "dist/release",
+    "listen": "127.0.0.1",
+    "port": 4303,
+    "https_proxy": "ops/web/nginx.conf.template",
+    "service": "ops/web/service.systemd",
+    "engine_enabled": false,
+    "private_admission": "deny-all until operator sets trusted network ranges",
+    "offline": false
+  }
+}

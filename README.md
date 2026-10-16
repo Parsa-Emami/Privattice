@@ -1,31 +1,40 @@
 # Privattice
 
-> v7.0 status: **ARCHITECTURE-GO / BOOTSTRAP-GO / SOURCE-NOT-IMPLEMENTED**
+[![Source](https://github.com/Parsa-Emami/Privattice/actions/workflows/contracts.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Privattice/actions/workflows/contracts.yml?query=branch%3Amain) [![Plan](https://github.com/Parsa-Emami/Privattice/actions/workflows/plan.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Privattice/actions/workflows/plan.yml?query=branch%3Amain) [![Web](https://github.com/Parsa-Emami/Privattice/actions/workflows/web.yml/badge.svg?branch=main)](https://github.com/Parsa-Emami/Privattice/actions/workflows/web.yml?query=branch%3Amain)
 
-This directory is a standalone GitHub repository starting point for Privattice. It contains the frozen architecture/specification, valid HTTP/event/configuration contracts, GitHub governance/security controls, and project-specific source bootstrap commands.
+[CI source integrity and dependency updates](docs/engineering/CI_SOURCE_INTEGRITY.md)
 
-## Runtime boundary
-- Laravel 13 control plane
-- Go 1.27 graph builder/analyzer
-- PostgreSQL 18.6
-- Apache AGE 1.7.0 for PostgreSQL 18
-- Valkey
-- OpenTelemetry
 
-## First executable proof
-Inventory import → authoritative relational state → AGE projection → bounded path query → drop/rebuild projection → identical projection hash.
+Open-source local-first web application under [Apache-2.0](LICENSE). **Current implementation: web foundation; complete domain workflow pending.**
 
-## Start
-```bash
-make validate
-# verify the GitHub owner/module namespace first
-make bootstrap
+## Clone and run the current workspace
+
+Prerequisites: Git and Node 24.19+ within Node 24 (npm included).
+
+```sh
+git clone https://github.com/Parsa-Emami/Privattice.git
+cd Privattice
+npm run setup
+npm start
 ```
 
-Read `ROADMAP_V7.md`, `PROJECT_START_CHECKLIST_V7.md`, `ACCEPTANCE_GATES_V7.md`, and `GITHUB_REPOSITORY_SETUP_V7.md` before the first code commit.
+Open http://127.0.0.1:4173. Current features are a roadmap browser and local bounded JSON structure preview. No Python, database, paid/cloud account, public domain or sibling clone is needed for this shell. It does not run the domain engine. [Clone guide](docs/engineering/CLONE_TO_RUN.md).
 
-## Evidence rule
-Architecture readiness is not production readiness. “S-tier”, “secure”, “resilient”, or performance claims require executable test/observability/failure/recovery/benchmark/release evidence.
+## Full product endpoint
 
-## v7 portfolio position
-Recommended implementation order: **4 / 10**. Graph projection/rebuild semantics are valuable but AGE adds operational complexity; better after one simpler project is shipped.
+Import synthetic access snapshot -> bounded path query -> inspect provenance -> simulate removing edge -> rebuild graph -> verify identical source hash.
+
+[C30](plans/commits/C30.md) proves the first locally usable supported product from a clean clone, including restart/restore. [C40](plans/commits/C40.md) proves complete published OSS v1. These are future evidence gates, not current shell capability claims. [Runtime resources](ops/runtime-requirements.json).
+
+## Implement the next commit
+
+```sh
+npm run plan -- status
+npm run plan -- next
+npm run plan -- show C07
+npm run check
+```
+
+Each [work card](plans/COMMIT_ROADMAP.md) specifies paths, actions, resources, fixtures, acceptance, negative tests, command availability and rollback. [AGENTS.md](AGENTS.md) and [execution contract](docs/agents/EXECUTION_CONTRACT.md) let an agent resume from this repository alone. [فارسی](docs/ROADMAP_FA.md).
+
+[Open-source contract](OPEN_SOURCE.md) · [Contributing](CONTRIBUTING.md) · [Third-party inventory](THIRD_PARTY_NOTICES.md) · [Definition of done](docs/release/DEFINITION_OF_DONE.md) · [Security](SECURITY.md). No DB schema, migration, .env or Dockerfile changes are authorized.
