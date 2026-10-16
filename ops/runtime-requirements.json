@@ -1,0 +1,27 @@
+{
+  "project": "Privattice",
+  "hardware": {
+    "vcpu": 2,
+    "ram_mib": 2048,
+    "free_disk_mib": 10240,
+    "measurement": "Unmeasured planning target; C28 must verify or reduce it."
+  },
+  "engine_language": "Go",
+  "providers": [],
+  "capacity_limits": {
+    "vertices": 10000,
+    "edges": 50000,
+    "query_max_depth": 6,
+    "query_max_paths": 100,
+    "expanded_vertices": 10000,
+    "deadline_seconds": 2
+  },
+  "current_shell_requires": [
+    "Git",
+    "Node 24.19+ within Node 24 (npm included)"
+  ],
+  "full_engine_platform_target": "Linux x86_64; other platforms need their own installed evidence",
+  "paid_or_cloud_account_required": false,
+  "owned_domain_required": false,
+  "versions": "Web versions are locked now; resolve exact engine/provider pins from official sources at C02."
+}
