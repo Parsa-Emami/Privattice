@@ -1,0 +1,15 @@
+{
+  "project": "Privattice",
+  "reviewed_commit": "85a4e41d2d412799c0d0c3d23ab09b3b96342d96",
+  "readiness": "WEB_FOUNDATION",
+  "core_ready": false,
+  "implemented": [
+    "responsive web shell",
+    "roadmap browser",
+    "local bounded JSON structure preview"
+  ],
+  "engine": "not implemented",
+  "next_task": "C01",
+  "next_command": "npm run plan -- next",
+  "full_product_endpoint": "C30 locally usable; C40 full published OSS v1"
+}
